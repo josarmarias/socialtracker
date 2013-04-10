@@ -33,9 +33,6 @@ if (! isset($_GET['oauth_verifier'])) {
     $_SESSION['oauth_token_secret'] = $reply->oauth_token_secret;
 }
 
-$reply = (array) $cb->statuses_homeTimeline();
-var_dump($reply);
-
 $followers=(array) $cb->followers_ids();
 var_dump($followers);
 ?>
