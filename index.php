@@ -37,6 +37,6 @@ if (! isset($_GET['oauth_verifier'])) {
     var_dump($reply->screen_name);
 }
 
-    $followers=(array) $cb->followers_ids("id='".$userId"'");
+    $followers=(array) $cb->followers_ids("id='".$userId."'");
 	var_dump($followers);
 ?>
