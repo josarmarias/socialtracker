@@ -25,4 +25,6 @@ $content2= $connection->get('followers/ids');
 /* Some example calls */
 //$connection->get('users/show', array('screen_name' => 'abraham'));
 
-include('html.inc');
+        print_r($content); 
+        echo ($content2);
+        ?>
