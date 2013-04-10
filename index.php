@@ -36,34 +36,7 @@ if (! isset($_GET['oauth_verifier'])) {
 $reply = (array) $cb->statuses_homeTimeline();
 echo $reply;
 
-$params = array(
-    'screen_name' => 'mynetx'
-);
-$reply = $cb->users_show($params);
-echo $reply;
-//cast returns to arrays
+$followers=(array) $cb->followers_ids();
+echo $followers;
 
-/*
-3. Mapping API methods to Codebird function calls
--------------------------------------------------
-
-As you can see from the last example, there is a general way how Twitter’s API methods
-map to Codebird function calls. The general rules are:
-
-1. For each slash in a Twitter API method, use an underscore in the Codebird function.
-
-    Example: ```statuses/update``` maps to ```Codebird::statuses_update()```.
-
-2. For each underscore in a Twitter API method, use camelCase in the Codebird function.
-
-    Example: ```statuses/home_timeline``` maps to ```Codebird::statuses_homeTimeline()```.
-
-3. For each parameter template in method, use UPPERCASE in the Codebird function.
-    Also don’t forget to include the parameter in your parameter list.
-
-    Examples:
-    - ```statuses/show/:id``` maps to ```Codebird::statuses_show_ID('id=12345')```.
-    - ```users/profile_image/:screen_name``` maps to
-      ```Codebird::users_profileImage_SCREEN_NAME('screen_name=mynetx')```.
-*/
 ?>
