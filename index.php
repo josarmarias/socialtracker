@@ -68,20 +68,22 @@ $noLongerFollowers=array_diff($savedFollowers, $currentFollowers);
 
 echo "New followers:<br>";
 //get the names of these followers and display
-foreach($followerIds as &$followerId){
+foreach($newFollowers as &$followerId){
 //get name given id
 $content= $connection->get('users/show', array('id' => $followerId));
 $contentArray=(array) $content;
 $followerName=$contentArray['name'];
+echo $followerName."<br>";
 }
 
 echo "No longer followers:<br>";
 //get the names of these followers and display
-foreach($followerIds as &$followerId){
+foreach($noLongerFollowers as &$followerId){
 //get name given id
 $content= $connection->get('users/show', array('id' => $followerId));
 $contentArray=(array) $content;
 $followerName=$contentArray['name'];
+echo $followerName."<br>";
 }
 
 echo "Saved new followers to database.<br>";
