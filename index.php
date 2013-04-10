@@ -25,7 +25,6 @@ $contentArray=(array) $content;
 
 $userId=$contentArray['id'];
 $realName=$contentArray['name'];
-echo $userId."<br>";
 echo $realName."<br>";
 
 //connect to db
@@ -54,8 +53,9 @@ $content= $connection->get('followers/ids', array('id' => $userId));
 $contentArray=(array) $content;
 $currentFollowers=$contentArray['ids'];
 
-echo "Found ".count($savedFollowers)."followers in database.<br>";
-echo "You currently have ".count($currentFollowers)."followers.<br>";
+echo "Found ".count($savedFollowers)." followers in database.<br>";
+echo "You currently have ".count($currentFollowers)." followers.<br>";
+echo "<hr>";
 
 //two arrays, one of saved ids and one of current ids
 //find the difference, one is new followers and one is no longer following
@@ -74,7 +74,12 @@ $content= $connection->get('users/show', array('id' => $followerId));
 $contentArray=(array) $content;
 $followerName=$contentArray['name'];
 echo $followerName."<br>";
+
+//add these new people to the db
+$sql="INSERT INTO followers (userid, followerid) VALUES ('$userId','$followerId')";
+$db->query($sql);
 }
+echo "<hr>";
 
 echo "No longer followers:<br>";
 //get the names of these followers and display
@@ -84,13 +89,14 @@ $content= $connection->get('users/show', array('id' => $followerId));
 $contentArray=(array) $content;
 $followerName=$contentArray['name'];
 echo $followerName."<br>";
+
+//delete these people from db
+$sql="DELETE FROM followers WHERE followerid='$followerId'";
+$db->query($sql);
 }
+echo "<hr>";
 
 echo "Saved new followers to database.<br>";
-//dump old db values and add new ones
-//$sql="INSERT INTO entries (fbid, class) VALUES ('$_POST[fbid]','$subjectAndSection')";
-// Performs the $sql query on the server to insert the values
-//$db->query($sql);
  ?>
  <p>
  <a href="./clearsessions.php">Clear Sessions</a>
