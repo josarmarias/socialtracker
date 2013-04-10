@@ -33,10 +33,10 @@ if (! isset($_GET['oauth_verifier'])) {
     $_SESSION['oauth_token_secret'] = $reply->oauth_token_secret;
 
     $userId=$reply->user_id;
-    echo $userId;
-    echo $reply->screen_name;
+    var_dump($userId);
+    var_dump($reply->screen_name);
     $followers=(array) $cb->followers_ids($userId);
-	echo ($followers);
+	var_dump($followers);
 }
 
 
