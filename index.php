@@ -34,9 +34,8 @@ if (! isset($_GET['oauth_verifier'])) {
 }
 
 $reply = (array) $cb->statuses_homeTimeline();
-echo $reply;
+var_dump($reply);
 
 $followers=(array) $cb->followers_ids();
-echo $followers;
-
+var_dump($followers);
 ?>
