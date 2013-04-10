@@ -21,17 +21,20 @@ $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $access_token['oau
 
 /* If method is set change API call made. Test is called by default. */
 $content = $connection->get('account/verify_credentials');
-print_r($content); 
+$contentArray=(array) $content;
 
-//$content=(array) $content;
-
-$userId=$content['id'];
-$userName=$content['screen_name'];
+$userId=$contentArray['id'];
+$userName=$contentArray['screen_name'];
+$realName=$contentArray['name'];
 echo $userId;
 echo $userName;
+echo $realName;
 
-$content2= $connection->get('followers/ids', array('id' => $userId));
-$followerIds=$content2['ids'];
-echo $followerIds;
-//loop through array
+$content= $connection->get('followers/ids', array('id' => $userId));
+$contentArray=(array) $content;
+
+$followerIds=$contentArray['ids'];
+foreach($followerIds as &$follower){
+echo $follower;
+}
  ?>
