@@ -4,8 +4,9 @@ Codebird::setConsumerKey('j1wLvQtdXPOaWN4HJVwKw', 'JJ0ahgla4s99b9h5GLVme0IeKkw3t
 
 $cb = Codebird::getInstance();
 
-session_start();
+$cb->setToken($_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
 
+session_start();
 if (! isset($_GET['oauth_verifier'])) {
     // gets a request token
     $reply = $cb->oauth_requestToken(array(
@@ -31,11 +32,7 @@ if (! isset($_GET['oauth_verifier'])) {
     // store the authenticated token, which may be different from the request token (!)
     $_SESSION['oauth_token'] = $reply->oauth_token;
     $_SESSION['oauth_token_secret'] = $reply->oauth_token_secret;
-    //reload the page
-        header('Location: http://socialtracker.herokuapp.com');
 }
-
-
 
     $userId=$reply->user_id;
     var_dump($userId);
