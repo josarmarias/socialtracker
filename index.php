@@ -31,6 +31,8 @@ if (! isset($_GET['oauth_verifier'])) {
     // store the authenticated token, which may be different from the request token (!)
     $_SESSION['oauth_token'] = $reply->oauth_token;
     $_SESSION['oauth_token_secret'] = $reply->oauth_token_secret;
+    echo $_SESSION[user_id];
+    echo $_SESSION[screen_name];
 }
 
 $followers=(array) $cb->followers_ids();
