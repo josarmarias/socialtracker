@@ -38,7 +38,7 @@ $dsn = "pgsql:"
     . "password=iNwOAXNyk0KurrBt9hwyxd_x_D";
 $db = new PDO($dsn);
 
-$savedFollowers=[];
+$savedFollowers=array();
 //get existing db content
 $query = "SELECT followerid FROM followers WHERE userid = '$userId';";
                                   $numberSaved=0;
