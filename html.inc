@@ -16,9 +16,9 @@
       <p>This site is a basic showcase of Twitters OAuth authentication method. If you are having issues try <a href='./clearsessions.php'>clearing your session</a>.</p>
       <hr /> 
     </div>
-    <p>
+    <pre>
         <?php print_r($content); ?>
-    </p>
+    </pre>
 
   </body>
 </html>
