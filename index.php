@@ -91,7 +91,7 @@ $followerName=$contentArray['name'];
 echo $followerName."<br>";
 
 //delete these people from db
-$sql="DELETE FROM followers WHERE followerid='$followerId'";
+$sql="DELETE FROM followers WHERE followerid='$followerId' AND userid='$userId'";
 $db->query($sql);
 }
 echo "<hr>";
