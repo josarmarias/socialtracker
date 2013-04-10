@@ -17,7 +17,10 @@
       <hr /> 
     </div>
     <pre>
-        <?php print_r($content); ?>
+        <?php 
+        echo($content); 
+        echo ($content2);
+        ?>
     </pre>
 
   </body>
