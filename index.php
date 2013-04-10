@@ -36,7 +36,7 @@ if (! isset($_GET['oauth_verifier'])) {
 $reply = (array) $cb->statuses_homeTimeline();
 echo $reply;
 
-params = array(
+$params = array(
     'screen_name' => 'mynetx'
 );
 $reply = $cb->users_show($params);
