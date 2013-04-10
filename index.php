@@ -29,16 +29,27 @@ $contentArray=(array) $content;
 $userId=$contentArray['id'];
 $userName=$contentArray['screen_name'];
 $realName=$contentArray['name'];
-echo $userId;
-echo $userName;
-echo $realName;
+echo $userId."<br>";
+echo $userName."<br>";
+echo $realName."<br>";
 
 $content= $connection->get('followers/ids', array('id' => $userId));
 $contentArray=(array) $content;
 
 $followerIds=$contentArray['ids'];
 foreach($followerIds as &$follower){
-echo $follower;
+echo $follower."<br>";
 }
  ?>
+ 
+ <pre>
+ New followers:
+</pre>
+
+<pre>
+ No longer followers:
+</pre>
+
+ <p>
  <a href="./clearsessions.php">Clear Sessions</a>
+</p>
