@@ -27,28 +27,37 @@ $content = $connection->get('account/verify_credentials');
 $contentArray=(array) $content;
 
 $userId=$contentArray['id'];
-$userName=$contentArray['screen_name'];
 $realName=$contentArray['name'];
 echo $userId."<br>";
-echo $userName."<br>";
 echo $realName."<br>";
 
 $content= $connection->get('followers/ids', array('id' => $userId));
 $contentArray=(array) $content;
 
 $followerIds=$contentArray['ids'];
-foreach($followerIds as &$follower){
-echo $follower."<br>";
+foreach($followerIds as &$followerId){
+echo $followerId."<br>";
+//get name given id
+$content= $connection->get('users/show', array('id' => $followerId));
+$contentArray=(array) $content;
+$followerName=$contentArray['name'];
+echo $followerName."<br>";
 }
- ?>
- 
- <pre>
- New followers:
-</pre>
 
-<pre>
- No longer followers:
-</pre>
+ ?>
+
+<p>
+Found x followers in database.
+You currently have y followers.
+</p>
+
+<p>
+New followers:
+</p>
+
+<p>
+No longer followers:
+</p>
 
  <p>
  <a href="./clearsessions.php">Clear Sessions</a>

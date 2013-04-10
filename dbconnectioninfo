@@ -3,4 +3,9 @@ Host	ec2-23-21-91-97.compute-1.amazonaws.com
 Database	d79rcco6km5fni
 User	qrcbvngsucryjg
 Port	5432
-Password	Hide iNwOAXNyk0KurrBt9hwyxd_x_D
+Password  iNwOAXNyk0KurrBt9hwyxd_x_D
+
+psql -h ec2-23-21-91-97.compute-1.amazonaws.com -U qrcbvngsucryjg d79rcco6km5fni
+iNwOAXNyk0KurrBt9hwyxd_x_D
+
+CREATE TABLE followers (subject_id SERIAL, userid VARCHAR(50), followerid VARCHAR(50));
