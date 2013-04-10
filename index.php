@@ -52,39 +52,44 @@ $result->closeCursor();
 //get current followers from twitter
 $content= $connection->get('followers/ids', array('id' => $userId));
 $contentArray=(array) $content;
-$followerIds=$contentArray['ids'];
+$currentFollowers=$contentArray['ids'];
 
-echo "Found x followers in database.";
-echo "You currently have y followers.";
+echo "Found ".count($savedFollowers)."followers in database.<br>";
+echo "You currently have ".count($currentFollowers)."followers.<br>";
 
 //two arrays, one of saved ids and one of current ids
 //find the difference, one is new followers and one is no longer following
 
+//in current, not in database
+$newFollowers=array_diff($currentFollowers, $savedFollowers);
+
+//in database, not in current
+$noLongerFollowers=array_diff($savedFollowers, $currentFollowers);
 
 echo "New followers:<br>";
-
-echo "No longer followers:<br>";
-
 //get the names of these followers and display
 foreach($followerIds as &$followerId){
 //get name given id
 $content= $connection->get('users/show', array('id' => $followerId));
 $contentArray=(array) $content;
 $followerName=$contentArray['name'];
-echo $followerName."<br>";
 }
 
+echo "No longer followers:<br>";
+//get the names of these followers and display
+foreach($followerIds as &$followerId){
+//get name given id
+$content= $connection->get('users/show', array('id' => $followerId));
+$contentArray=(array) $content;
+$followerName=$contentArray['name'];
+}
+
+echo "Saved new followers to database.<br>";
 //dump old db values and add new ones
 //$sql="INSERT INTO entries (fbid, class) VALUES ('$_POST[fbid]','$subjectAndSection')";
 // Performs the $sql query on the server to insert the values
 //$db->query($sql);
  ?>
-
-
-
-
-
-
  <p>
  <a href="./clearsessions.php">Clear Sessions</a>
 </p>
